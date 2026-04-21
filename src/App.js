@@ -42,7 +42,12 @@ function ShareButton({ label, emoji, color, text, href }) {
         cursor: "pointer", flex: 1, justifyContent: "center",
         fontWeight: 500,
       }}
-    ><span style={{ fontSize: "16px" }}>{emoji}</span>{label}</function ListingCard({ platform, content, isLoading }) {
+        ><span style={{ fontSize: "16px" }}>{emoji}</span>{label}</a>
+  );
+}
+
+  function ListingCard({ platform, content, isLoading }) {
+
   const shareHref = platform.id === "telegram"
     ? `https://t.me/share/url?text=${encodeURIComponent(content || "")}`
     : platform.id === "facebook"
