@@ -97,7 +97,9 @@ function ShareButton({ label, emoji, color, text, href }) {
       )}
     </div>
   );
-}export default function App() {
+}
+
+export default function App() {
   const [image, setImage] = useState(null);
   const [imageBase64, setImageBase64] = useState(null);
   const [price, setPrice] = useState("");
@@ -120,7 +122,9 @@ function ShareButton({ label, emoji, color, text, href }) {
     setListings({ yad2: null, telegram: null, facebook: null });
     setItemSummary(null);
     setError(null);
-  };  const callClaude = async (system, userText, imgBase64) => {
+  };  
+  
+    const callClaude = async (system, userText, imgBase64) => {
     const content = imgBase64
       ? [{ type: "image", source: { type: "base64", media_type: "image/jpeg", data: imgBase64 } }, { type: "text", text: userText }]
       : [{ type: "text", text: userText }];
@@ -167,7 +171,7 @@ function ShareButton({ label, emoji, color, text, href }) {
       setLoading({ yad2: true, telegram: true, facebook: true });
 
       await Promise.all([
-        callClaude("Write a Yad2 Israeli classified ad in Hebrew. Max 10 lines. Format: emoji title, blank line, - bullet features, blank line, price + עוברים דירה if moving. Be concise.", `Write listing for: ${ctx}`, null)
+        callClaude("Write a Yad2 Israeli classified ad in Hebrew. Max 10 lines. Format: emoji title, blank line, - bullet features, blank line, price + moving sale if moving. Be concise.", `Write listing for: ${ctx}`, null)
           .then(t => { setListings(p => ({ ...p, yad2: t })); setLoading(p => ({ ...p, yad2: false })); }),
 
         callClaude("Write a Telegram classified ad in Russian for Israeli Russian-speaking groups. Max 10 lines. Format: CAPS title, blank line, - bullets, blank line, price. Warm and friendly.", `Write listing for: ${ctx}`, null)
