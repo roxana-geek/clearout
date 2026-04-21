@@ -246,7 +246,7 @@ export default function App() {
             display: "flex", alignItems: "center", justifyContent: "center",
           }}
         >
-          <input ref={fileRef} type="file" accept="image/*" capture="environment" onChange={(e) => processFile(e.target.files[0])} style={{ display: "none" }} />
+          <input ref={fileRef} type="file" accept="image/*" onChange={(e) => processFile(e.target.files[0])} style={{ display: "none" }} />
           {image ? (
             <div style={{ position: "relative", width: "100%" }}>
               <img src={image} alt="item" style={{ width: "100%", maxHeight: "280px", objectFit: "cover", display: "block", borderRadius: "17px" }} />
