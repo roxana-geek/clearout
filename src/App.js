@@ -162,13 +162,13 @@ function ShareButton({ label, emoji, color, text, href }) {
       setLoading({ yad2: true, telegram: true, facebook: true });
 
       await Promise.all([
-        callClaude("Write a Yad2 Israeli classified ad in Hebrew. Max 10 lines. Format: emoji title, blank line, ✅ bullet features, blank line, price + עוברים דירה if moving. Be concise.", `Write listing for: ${ctx}`, null)
+        callClaude("Write a Yad2 Israeli classified ad in Hebrew. Max 10 lines. Format: emoji title, blank line, - bullet features, blank line, price + עוברים דירה if moving. Be concise.", `Write listing for: ${ctx}`, null)
           .then(t => { setListings(p => ({ ...p, yad2: t })); setLoading(p => ({ ...p, yad2: false })); }),
 
-        callClaude("Write a Telegram classified ad in Russian for Israeli Russian-speaking groups. Max 10 lines. Format: CAPS title, blank line, ✅ bullets, blank line, price. Warm and friendly.", `Write listing for: ${ctx}`, null)
+        callClaude("Write a Telegram classified ad in Russian for Israeli Russian-speaking groups. Max 10 lines. Format: CAPS title, blank line, - bullets, blank line, price. Warm and friendly.", `Write listing for: ${ctx}`, null)
           .then(t => { setListings(p => ({ ...p, telegram: t })); setLoading(p => ({ ...p, telegram: false })); }),
 
-        callClaude("Write a Facebook Marketplace listing in English. Max 10 lines. Format: catchy title, blank line, ✅ bullets, blank line, price + 'Pickup only'. Clear and friendly.", `Write listing for: ${ctx}`, null)
+        callClaude("Write a Facebook Marketplace listing in English. Max 10 lines. Format: catchy title, blank line, - bullets, blank line, price + 'Pickup only'. Clear and friendly.", `Write listing for: ${ctx}`, null)
           .then(t => { setListings(p => ({ ...p, facebook: t })); setLoading(p => ({ ...p, facebook: false })); }),
       ]);
 
@@ -229,14 +229,14 @@ function ShareButton({ label, emoji, color, text, href }) {
             <div style={{ position: "relative", width: "100%" }}>
               <img src={image} alt="item" style={{ width: "100%", maxHeight: "280px", objectFit: "cover", display: "block", borderRadius: "17px" }} />
               <div style={{ position: "absolute", bottom: "10px", right: "10px", background: "rgba(26,26,46,0.85)", color: "#f0c040", borderRadius: "8px", padding: "5px 10px", fontSize: "11px", fontFamily: "'DM Mono', monospace" }}>
-                📷 Нажми чтобы заменить
+                [photo] Нажми чтобы заменить
               </div>
             </div>
           ) : (
             <div style={{ textAlign: "center", padding: "28px 20px" }}>
-              <div style={{ fontSize: "36px", marginBottom: "10px" }}>📦</div>
+              <div style={{ fontSize: "36px", marginBottom: "10px" }}>[box]</div>
               <div style={{ fontFamily: "'DM Mono', monospace", fontSize: "13px", color: "#1a1a2e", fontWeight: 600 }}>
-                📷 Сфотографировать вещь
+                [photo] Сфотографировать вещь
               </div>
               <div style={{ fontSize: "11px", color: "#999", marginTop: "5px" }}>или выбери из галереи</div>
             </div>
@@ -259,7 +259,7 @@ function ShareButton({ label, emoji, color, text, href }) {
 
         {error && (
           <div style={{ background: "#fee2e2", borderRadius: "10px", padding: "12px 14px", marginBottom: "14px", fontSize: "13px", color: "#dc2626", fontFamily: "'DM Mono', monospace" }}>
-            ⚠️ {error}
+            ! {error}
           </div>
         )}
         <button onClick={generate} disabled={!imageBase64 || isWorking}
@@ -273,7 +273,7 @@ function ShareButton({ label, emoji, color, text, href }) {
             cursor: !imageBase64 ? "not-allowed" : "pointer",
             marginBottom: "24px", textTransform: "uppercase",
           }}>
-          {isAnalyzing ? "🔍 Анализирую фото..." : isWorking ? "✍️ Пишу объявления..." : allReady ? "🔄 Сгенерировать заново" : "✨ Создать объявления"}
+          {isAnalyzing ? "... Анализирую фото..." : isWorking ? "... Пишу объявления..." : allReady ? "* Сгенерировать заново" : "* Создать объявления"}
         </button>
 
         {itemSummary && (
