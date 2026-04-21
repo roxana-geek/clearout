@@ -1,9 +1,10 @@
 import { useState, useRef } from "react";
 
 const PLATFORMS = [
-  { id: "yad2", label: "Yad2", lang: "he", emoji: "🇮🇱", color: "#E8F4FD" },
-  { id: "telegram", label: "Telegram RU", lang: "ru", emoji: "🇷🇺", color: "#FDF0F0" },
-  { id: "facebook", label: "Facebook EN", lang: "en", emoji: "🇬🇧", color: "#F0FDF4" },
+  { id: "yad2", label: "Yad2", lang: "he", emoji: "IL", color: "#E8F4FD" },
+  { id: "telegram", label: "Telegram RU", lang: "ru", emoji: "RU", color: "#FDF0F0" },
+  { id: "facebook", label: "Facebook EN", lang: "en", emoji: "EN", color: "#F0FDF4" },
+
 ];
 function CopyButton({ text, small }) {
   const [copied, setCopied] = useState(false);
